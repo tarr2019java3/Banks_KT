@@ -1,3 +1,9 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -22,6 +28,19 @@ public class Main {
         System.out.println(user3.getBankAccount().getName());
         System.out.println(user4.getBankAccount().getAccountNumber());
 
+        ObjectMapper objectMapper = new ObjectMapper();
 
+        ArrayList userList = new ArrayList();
+        userList.add(user1);
+        userList.add(user2);
+        userList.add(user3);
+        userList.add(user4);
+        try {
+            objectMapper.writeValue(new File("userList.json"), userList);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
